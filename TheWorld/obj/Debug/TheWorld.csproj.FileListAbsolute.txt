@@ -1,6 +1,0 @@
-C:\development\csharp\TheWorld\TheWorld\obj\Debug\TheWorld.csprojResolveAssemblyReference.cache
-C:\development\csharp\TheWorld\TheWorld\bin\Debug\TheWorld.exe.config
-C:\development\csharp\TheWorld\TheWorld\bin\Debug\TheWorld.exe
-C:\development\csharp\TheWorld\TheWorld\bin\Debug\TheWorld.pdb
-C:\development\csharp\TheWorld\TheWorld\obj\Debug\TheWorld.exe
-C:\development\csharp\TheWorld\TheWorld\obj\Debug\TheWorld.pdb
