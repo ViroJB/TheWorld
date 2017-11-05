@@ -6,6 +6,7 @@ public class LivingBeing {
     private int age = 0;
     private int maxAge = 0;
     private Integer connectedTo;
+    private int childs = 0;
 
     public LivingBeing () {
     }
@@ -40,5 +41,13 @@ public class LivingBeing {
 
     public void setConnectedTo(Integer connectedTo) {
         this.connectedTo = connectedTo;
+    }
+
+    public int getChilds() {
+        return childs;
+    }
+
+    public void setChilds(int childs) {
+        this.childs = childs;
     }
 }

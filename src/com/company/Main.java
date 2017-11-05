@@ -20,14 +20,23 @@ public class Main {
         ArrayList<ArrayList<LivingBeing>> animals = new ArrayList<>();
         animals.add(new ArrayList<>());
 
-        int i = 0;
+        for (int i = 0; i < 75; i++) {
+            animals.get(0).add(new Dog(random, i));
+        }
+
+        int i = 75;
+
         while (true) {
 
             if(i % ticks == 0) {
-                animals = Utility.increaseAge(animals);
+                animals = Utility.increaseAge(animals, random, i);
             }
 
-            animals.get(0).add(new Dog(random, i));
+/*            if(i-1 != animals.get(0).get(animals.get(0).size()-1).getId() || i == 0) {
+                i = animals.get(0).get(animals.get(0).size()-1).getId()+1;
+            }
+            animals.get(0).add(new Dog(random, i));*/
+
 
             dog = (Dog) animals.get(0).get(animals.get(0).size()-1);
 

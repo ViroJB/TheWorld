@@ -1,22 +1,35 @@
 package com.company;
 
+import com.company.entity.Dog;
 import com.company.entity.LivingBeing;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Utility {
 
-    public static ArrayList<ArrayList<LivingBeing>> increaseAge (ArrayList<ArrayList<LivingBeing>> animals) {
+    public static ArrayList<ArrayList<LivingBeing>> increaseAge (ArrayList<ArrayList<LivingBeing>> animals, Random random, int id) {
 
         if(animals.get(0).size() == 0) {
             return animals;
         }
 
         ArrayList<Integer> delList = new ArrayList<>();
+        int newChildren = 0;
         LivingBeing first;
         LivingBeing second;
         for (ArrayList<LivingBeing> animal : animals) {
             for (LivingBeing a : animal) {
+
+                // get amount of new Childs
+                if(a.getConnectedTo() != null && a.getChilds() < 4 && random.nextInt(28) % 12 == 1) {
+                    ++newChildren;
+                    a.setChilds(a.getChilds()+1);
+
+                    second = getObjectById(animal, a.getId());
+                    second.setChilds(second.getChilds()+1);
+                }
+
                 first = a;
 
                 // mark dead Entities
@@ -33,6 +46,15 @@ public class Utility {
                 }
             }
 
+            // add childs
+            System.out.println(newChildren);
+            for (int i = 0; i < newChildren; i++) {
+                System.out.println("Child added! ID: " + (animal.get(animal.size()-1).getId()+1));
+                animal.add(new Dog(random, animal.get(animal.size()-1).getId()+1));
+                ++id;
+            }
+            newChildren = 0;
+
             // delete dead Entities
             for (int i = 0; i < delList.size(); i++) {
                 animal = deleteObjectById(animal, delList.get(i));
@@ -40,6 +62,7 @@ public class Utility {
             }
 
 
+            // find connections
             for (int i = 0; i < animal.size(); i++) {
                 for (int j = 0; j < animal.size(); j++) {
 

@@ -10,7 +10,7 @@ public class Dog extends Animal {
         this.setId(i);
         this.setAge(random.nextInt(20));
         this.setMaxAge(random.nextInt(15)+20);
-        this.setProbability(random.nextInt(19)+1);
+        this.setProbability(random.nextInt(56)+1);
 
         if(random.nextInt(2) == 0) {
             this.setGender("w");
@@ -37,8 +37,8 @@ public class Dog extends Animal {
         );
     }
 
-    @Override
     public boolean equals(Object object) {
+        Random random = new Random();
         Animal animal = (Animal) object;
         if(animal == null) {
             return false;
@@ -47,6 +47,7 @@ public class Dog extends Animal {
                 && this.getId() != animal.getId()
                 && this.getConnectedTo() == null
                 && animal.getConnectedTo() == null
+                && (random.nextInt(4)+1) % 2 == 0
            )
         {
             return true;
