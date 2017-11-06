@@ -47,7 +47,9 @@ public class Dog extends Animal {
                 && this.getId() != animal.getId()
                 && this.getConnectedTo() == null
                 && animal.getConnectedTo() == null
-                && (random.nextInt(4)+1) % 2 == 0
+                && this.getAge() > 2
+                && animal.getAge() > 2
+                && (random.nextInt(10)+1) % 4 == 0
            )
         {
             return true;

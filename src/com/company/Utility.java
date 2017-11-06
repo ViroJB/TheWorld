@@ -8,6 +8,8 @@ import java.util.Random;
 
 public class Utility {
 
+    static int connectionCount = 0;
+
     public static ArrayList<ArrayList<LivingBeing>> increaseAge (ArrayList<ArrayList<LivingBeing>> animals, Random random, int id) {
 
         if(animals.get(0).size() == 0) {
@@ -16,12 +18,11 @@ public class Utility {
 
         ArrayList<Integer> delList = new ArrayList<>();
         int newChildren = 0;
-        LivingBeing first;
         LivingBeing second;
         for (ArrayList<LivingBeing> animal : animals) {
             for (LivingBeing a : animal) {
 
-                // get amount of new Childs
+                // get amount of new children
                 if(a.getConnectedTo() != null && a.getChilds() < 4 && random.nextInt(28) % 12 == 1) {
                     ++newChildren;
                     a.setChilds(a.getChilds()+1);
@@ -30,23 +31,23 @@ public class Utility {
                     second.setChilds(second.getChilds()+1);
                 }
 
-                first = a;
 
                 // mark dead Entities
-                if (first.getAge() >= first.getMaxAge()) {
-                    if (first.getConnectedTo() != null) {
-                        second = getObjectById(animal, first.getConnectedTo());
+                if (a.getAge() >= a.getMaxAge()) {
+                    if (a.getConnectedTo() != null) {
+                        second = getObjectById(animal, a.getConnectedTo());
                         second.setConnectedTo(null);
+                        connectionCount--;
                     }
                     delList.add(a.getId());
 
                 // increase age for all others
                 } else {
-                    first.setAge(first.getAge() + 1);
+                    a.setAge(a.getAge() + 1);
                 }
             }
 
-            // add childs
+            // add children
             System.out.println(newChildren);
             for (int i = 0; i < newChildren; i++) {
                 System.out.println("Child added! ID: " + (animal.get(animal.size()-1).getId()+1));
@@ -63,19 +64,27 @@ public class Utility {
 
 
             // find connections
-            for (int i = 0; i < animal.size(); i++) {
-                for (int j = 0; j < animal.size(); j++) {
-
-                    if(animal.get(i).equals(animal.get(j))) {
-                        animal.get(i).setConnectedTo(animal.get(j).getId());
-                        animal.get(j).setConnectedTo(animal.get(i).getId());
-                        System.out.println("verbindung " + animal.get(i).getId() + "-" + animal.get(j).getId());
-                    }
-                }
-            }
+            animal = findConnections(animal);
+            animals.remove(0);
+            animals.add(animal);
         }
 
         return animals;
+    }
+
+    public static ArrayList<LivingBeing> findConnections(ArrayList<LivingBeing> animal) {
+        for (int i = 0; i < animal.size(); i++) {
+            for (int j = 0; j < animal.size(); j++) {
+
+                if(animal.get(i).equals(animal.get(j))) {
+                    connectionCount++;
+                    animal.get(i).setConnectedTo(animal.get(j).getId());
+                    animal.get(j).setConnectedTo(animal.get(i).getId());
+                    System.out.println("verbindung " + animal.get(i).getId() + "-" + animal.get(j).getId());
+                }
+            }
+        }
+        return animal;
     }
 
     public static LivingBeing getObjectById(ArrayList<LivingBeing> objects, int id) {
@@ -97,4 +106,5 @@ public class Utility {
         }
         return livingBeings;
     }
+
 }
