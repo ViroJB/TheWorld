@@ -1,13 +1,15 @@
 package com.company;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class Window {
 
     private JFrame jFrame;
     private JPanel jPanel;
-    private JTextPane jTextPane;
+    private JTextPane jContent;
+    private JTextPane jReset;
     private JButton jButton;
 
     private Dimension d = new Dimension(Config.windowX, Config.windowY);
@@ -24,7 +26,7 @@ public class Window {
     }
 
     public void setPaneText(int entityCount, int connectionCount, int runtime) {
-        jTextPane.setText("Entity-Count: " + entityCount
+        jContent.setText("Entity-Count: " + entityCount
                 + "\n"
                 + "Connections: " + connectionCount
                 + "\n"
@@ -35,8 +37,9 @@ public class Window {
     }
 
     private void setDisplayOrder() {
-        jPanel.add(jButton);
-        jPanel.add(jTextPane);
+        jPanel.add(jButton, BorderLayout.WEST);
+        jPanel.add(jContent, BorderLayout.EAST);
+        jPanel.add(jReset, BorderLayout.EAST);
     }
 
     private void openWindow () {
@@ -49,15 +52,20 @@ public class Window {
     private void createPanel () {
         jPanel = new JPanel();
         jPanel.setBackground(Config.backgroundColor);
+        jPanel.setLayout(new BorderLayout());
         jFrame.add(jPanel);
     }
 
     private void addContent () {
-        jTextPane = new JTextPane();
-        jTextPane.setBackground(Config.backgroundColor);
-        jTextPane.setText("Unedited");
+        jContent = new JTextPane();
+        jContent.setBackground(Config.backgroundColor);
+        jContent.setText("Unedited");
 
-        jButton = new JButton("Get Stuff");
+        jReset = new JTextPane();
+        jReset.setBackground(Config.backgroundColor);
+        jReset.setText("Unedited2");
+
+        jButton = new JButton("Reset");
         jButton.setLayout(null);
         jButton.setLocation(100,50);
     }

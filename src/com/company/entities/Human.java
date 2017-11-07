@@ -1,4 +1,4 @@
-package com.company.entity;
+package com.company.entities;
 
 public class Human extends LivingBeing {
 

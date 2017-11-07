@@ -1,7 +1,7 @@
 package com.company;
 
-import com.company.entity.Dog;
-import com.company.entity.LivingBeing;
+import com.company.entities.Dog;
+import com.company.entities.LivingBeing;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,6 +19,7 @@ public class Utility {
         ArrayList<Integer> delList = new ArrayList<>();
         int newChildren = 0;
         LivingBeing second;
+
         for (ArrayList<LivingBeing> animal : animals) {
             for (LivingBeing a : animal) {
 
@@ -71,6 +72,7 @@ public class Utility {
 
         return animals;
     }
+
 
     public static ArrayList<LivingBeing> findConnections(ArrayList<LivingBeing> animal) {
         for (int i = 0; i < animal.size(); i++) {

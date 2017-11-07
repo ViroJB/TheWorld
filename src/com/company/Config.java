@@ -16,4 +16,7 @@ public class Config {
 
     // System Settings
     public static int sleepDelay = 500; // sleep delay in ms
+
+    // Entity ID's
+    public static int DOGS = 0;
 }

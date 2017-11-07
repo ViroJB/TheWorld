@@ -1,4 +1,4 @@
-package com.company;
+package com.company.actionListeners;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

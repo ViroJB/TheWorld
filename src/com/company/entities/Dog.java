@@ -1,4 +1,4 @@
-package com.company.entity;
+package com.company.entities;
 
 import java.util.Random;
 
@@ -6,8 +6,8 @@ public class Dog extends Animal {
 
     private String gender;
 
-    public Dog(Random random, int i) {
-        this.setId(i);
+    public Dog(Random random, int id) {
+        this.setId(id);
         this.setAge(random.nextInt(20));
         this.setMaxAge(random.nextInt(15)+20);
         this.setProbability(random.nextInt(56)+1);
