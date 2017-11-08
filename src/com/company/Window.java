@@ -39,7 +39,7 @@ public class Window {
     private void setDisplayOrder() {
         jPanel.add(jButton, BorderLayout.WEST);
         jPanel.add(jContent, BorderLayout.EAST);
-        jPanel.add(jReset, BorderLayout.EAST);
+        //jPanel.add(jReset, BorderLayout.EAST);
     }
 
     private void openWindow () {
@@ -61,9 +61,11 @@ public class Window {
         jContent.setBackground(Config.backgroundColor);
         jContent.setText("Unedited");
 
+/*
         jReset = new JTextPane();
         jReset.setBackground(Config.backgroundColor);
         jReset.setText("Unedited2");
+*/
 
         jButton = new JButton("Reset");
         jButton.setLayout(null);

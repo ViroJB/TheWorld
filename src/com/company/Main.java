@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.entities.Dog;
 import com.company.entities.LivingBeing;
+import com.company.entities.World;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,32 +17,34 @@ public class Main {
         int id = 0;
 
         Random random = new Random();
-        ArrayList<ArrayList<LivingBeing>> animals = new ArrayList<>();
-        animals.add(new ArrayList<>());
+
 
         // create the window
         Window window = new Window();
+
+        // ... and the world
+        World world = new World();
 
         // let it run...
         while (true) {
 
             // refill if needed
-            if(animals.get(0).size() <= 50) {
+            if(world.getLivingBeings().get(Config.DOGS).size() <= 50) {
                 for (int i = 0; i < (Config.entityStartCount/2); i++) {
-                    animals.get(0).add(new Dog(random, id));
+                    world.getLivingBeings().get(Config.DOGS).add(new Dog(random, id));
                     id++;
                 }
             }
 
             if(id % Config.agingInterval == 0) {
-                animals = Utility.increaseAge(animals, random, id);
+                world.setLivingBeings(Utility.increaseAge(world.getLivingBeings(), random, id));
             }
 
 
             // update the pane text
             connectionCount = Utility.connectionCount;
             currentTime = (int) System.currentTimeMillis()/1000;
-            window.setPaneText(animals.get(0).size(), connectionCount, (currentTime-startTime));
+            window.setPaneText(world.getLivingBeings().get(Config.DOGS).size(), connectionCount, (currentTime-startTime));
 
             try {
                 Thread.sleep(Config.sleepDelay);
