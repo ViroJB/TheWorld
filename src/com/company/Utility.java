@@ -10,13 +10,13 @@ public class Utility {
 
     static int connectionCount = 0;
 
-    public static ArrayList<ArrayList<LivingBeing>> increaseAge (ArrayList<ArrayList<LivingBeing>> animals, Random random, int id) {
+    public static ArrayList<ArrayList<LivingBeing>> increaseAge (ArrayList<ArrayList<LivingBeing>> animals, Random random, Id id) {
 
         if(animals.get(0).size() == 0) {
             return animals;
         }
 
-        ArrayList<Integer> delList = new ArrayList<>();
+        ArrayList<LivingBeing> delList = new ArrayList<>();
         int newChildren = 0;
         LivingBeing second;
 
@@ -40,28 +40,28 @@ public class Utility {
                         second.setConnectedTo(null);
                         connectionCount--;
                     }
-                    delList.add(a.getId());
-
+                    delList.add(a);
                 // increase age for all others
                 } else {
-                    a.setAge(a.getAge() + 1);
+                    a.increaseAge();
                 }
             }
 
             // add children
             System.out.println(newChildren);
             for (int i = 0; i < newChildren; i++) {
-                System.out.println("Child added! ID: " + (animal.get(animal.size()-1).getId()+1));
-                animal.add(new Dog(random, animal.get(animal.size()-1).getId()+1));
-                ++id;
+                animal.add(new Dog(random, id.getNext()));
+                System.out.println("Child added! ID: " + id.getCurrent());
             }
             newChildren = 0;
 
             // delete dead Entities
             for (int i = 0; i < delList.size(); i++) {
-                animal = deleteObjectById(animal, delList.get(i));
-                System.out.println("Deleted ID: " + delList.get(i));
+                animal.remove(delList.get(i));
+                //animal = deleteObjectById(animal, delList.get(i));
+                System.out.println("Deleted ID: " + delList.get(i).getId());
             }
+            delList.clear();
 
 
             // find connections

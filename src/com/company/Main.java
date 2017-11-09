@@ -14,7 +14,8 @@ public class Main {
         int startTime = (int) System.currentTimeMillis()/1000;
         int currentTime;
         int connectionCount;
-        int id = 0;
+        int a = 0;
+        Id id = new Id();
 
         Random random = new Random();
 
@@ -31,12 +32,12 @@ public class Main {
             // refill if needed
             if(world.getLivingBeings().get(Config.DOGS).size() <= 50) {
                 for (int i = 0; i < (Config.entityStartCount/2); i++) {
-                    world.getLivingBeings().get(Config.DOGS).add(new Dog(random, id));
-                    id++;
+                    world.getLivingBeings().get(Config.DOGS).add(new Dog(random, id.getNext()));
+                    a++;
                 }
             }
 
-            if(id % Config.agingInterval == 0) {
+            if(a % Config.agingInterval == 0) {
                 world.setLivingBeings(Utility.increaseAge(world.getLivingBeings(), random, id));
             }
 
@@ -52,7 +53,7 @@ public class Main {
                 e.printStackTrace();
             }
 
-            ++id;
+            ++a;
         }
     }
 }

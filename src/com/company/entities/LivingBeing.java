@@ -6,9 +6,13 @@ public class LivingBeing {
     private int age = 0;
     private int maxAge = 0;
     private Integer connectedTo;
-    private int childs = 0;
+    private int children = 0;
 
     public LivingBeing () {
+    }
+
+    public void increaseAge() {
+        age = age+1;
     }
 
     public void setId(int id) {
@@ -44,10 +48,10 @@ public class LivingBeing {
     }
 
     public int getChilds() {
-        return childs;
+        return children;
     }
 
     public void setChilds(int childs) {
-        this.childs = childs;
+        this.children = childs;
     }
 }
