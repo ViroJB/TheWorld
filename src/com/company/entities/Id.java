@@ -17,4 +17,8 @@ public class Id {
         return id;
     }
 
+    public void reset() {
+        id = 0;
+    }
+
 }
